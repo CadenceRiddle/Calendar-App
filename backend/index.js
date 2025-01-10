@@ -1,35 +1,27 @@
+// server.js
 const express = require('express');
 const bodyParser = require('body-parser');
+const { DB } = require('./db.js');
 
+class Server {
+    constructor() {
+        this.app = express();
+        this.PORT = 3000;
+        this.setUpMiddleWare();
+        this.database = new DB();
+    }
 
-class Server{
-  constructor(){
-    this.app = express();
-    this.PORT = 3000;
+    setUpMiddleWare() {
+        this.app.use(bodyParser.json());
+    }
 
-    this.setUpMiddleWare();
-
-  }
-
-  setUpMiddleWare(){
-    this.app.use(bodyParser.json());
-  }
-
-  start(){
-    this.app.listen(this.PORT, () => {
-      console.log(`listening on port ${this.PORT}`)
-    })
-  }
+    start() {
+        this.app.listen(this.PORT, () => {
+            console.log(`Listening on port ${this.PORT}`);
+        });
+        this.database.run();
+    }
 }
 
-const server = new Server()
+const server = new Server();
 server.start();
-// app.use(express.json());
-
-// app.get('/', (req, res) => {
-//   res.send('Calendar is running')
-// })
-
-// app.listen(PORT, () => {
-//   console.log(`Server is running on ${PORT}`)
-// })
