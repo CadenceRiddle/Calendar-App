@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,6 +18,7 @@ const Login = () => {
         //mock authentication, will replace with call
         if (email === 'test@example.com' && password === 'password123') {
             alert('login successful')
+            navigate("/home");
         }
         else {
             setError('Invalid email or password')
