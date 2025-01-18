@@ -3,25 +3,35 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!email || !password) {
-            setError('Please fill in all fields');
-            return;
-        }
-        //mock authentication, will replace with call
-        if (email === 'test@example.com' && password === 'password123') {
-            alert('login successful')
-            navigate("/home");
-        }
-        else {
-            setError('Invalid email or password')
+        try{
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            })
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                navigate('/home');
+            } else {
+                setError(data.message);
+            }
+
+        }catch{
+            console.error(err);
+            setError('Failed to connect to server')
         }
     }
 
@@ -31,8 +41,8 @@ const Login = () => {
             {error && <p className='error'>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Email:</label>
-                    <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter Email Here' required>
+                    <label>Username:</label>
+                    <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Enter Username Here' required>
                     </input>
                 </div>
                 <div>
