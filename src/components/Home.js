@@ -1,10 +1,12 @@
 import React from 'react';
+import './Home.css';
 
 const Home = () => {
     return (
-        <div>
-            <h1>Home</h1>
-            <p>You are in</p>
+        <div className='home-container'>
+            <div className='top'>Home</div>
+            <div className='main'>Calendar</div>
+            <div className='side'>Sidebar</div>
         </div>
     );
 };
