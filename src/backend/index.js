@@ -43,6 +43,25 @@ class Server {
                 res.status(500).json({message: "Server Error"})
             }
         })
+
+        this.app.post('/signup', async (req, res) =>{
+            const {username, password, age} = req.body;
+
+            try{
+                const existingUser = await this.database.User.findOne({where: {username}});
+
+                if(existingUser){
+                    return res.status(400).json({message: "Username already exists"});
+                }
+
+                await this.database.User.create({username, password, age});
+
+                res.status(200).json({message: "profile created successfully"})
+            }catch{
+                console.error(err)
+                res.status(500).json({message: "Server Error"})
+            }
+        })
     }
 
     start() {
