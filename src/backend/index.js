@@ -16,6 +16,7 @@ class Server {
 
     setUpMiddleWare() {
         this.app.use(bodyParser.json());
+        this.app.use(cors())
     }
 
     setUpRoutes() {

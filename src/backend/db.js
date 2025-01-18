@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt');
 
 dotenv.config();
 
@@ -38,6 +39,11 @@ class DB {
                 defaultValue: 21,
             },
         });
+
+        User.beforeCreate(async (user) => {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
+        })
 
         // Add connect method to User model
         User.connect = async () => {
