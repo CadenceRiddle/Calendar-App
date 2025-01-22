@@ -8,7 +8,7 @@ const cors = require('cors');
 class Server {
     constructor() {
         this.app = express();
-        this.PORT = 3000;
+        this.PORT = 3001;
         this.setUpMiddleWare();
         this.database = new DB();
         this.setUpRoutes()
