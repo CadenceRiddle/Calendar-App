@@ -1,0 +1,47 @@
+/* General Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.3s ease;
+    cursor: pointer;
+    overflow: hidden; /* Hide content when collapsed */
+  }
+  
+  /* Collapsed State */
+  .sidebar.collapsed {
+    width: 60px; /* Reduced width for collapsed state */
+  }
+  
+  /* Sidebar Content */
+  .sidebar-content {
+    text-align: center;
+  }
+  
+  .sidebar-content h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .sidebar-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+  }
+  
+  .sidebar-content ul li {
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+  
+  /* Hover Effect for Links */
+  .sidebar-content ul li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
