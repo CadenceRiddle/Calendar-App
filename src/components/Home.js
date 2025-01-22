@@ -1,17 +1,18 @@
 import React from 'react';
-import './Home.css';
+import Sidebar from './Sidebar';
 import MyCalendar from './Calendar';
+import './Home.css'; // Optional for additional styling
 
 const Home = () => {
-    return (
-        <div className='home-container'>
-            <div className='top'>Home</div>
-            <div className='main'>
-                <MyCalendar />
-            </div>
-            <div className='side'>Sidebar</div>
-        </div>
-    );
+  return (
+    <div className="home-container">
+      <Sidebar />
+      <div className="main-content">
+        <h1>Welcome to the Home Page</h1>
+        <MyCalendar />
+      </div>
+    </div>
+  );
 };
 
-export default Home
+export default Home;
