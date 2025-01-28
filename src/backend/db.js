@@ -17,6 +17,7 @@ class DB {
         );
 
         this.User = this.initUserModel();
+        this.Events = this.initEventsModel();
     }
 
     // Initialize the User model
