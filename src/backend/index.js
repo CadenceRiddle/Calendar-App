@@ -62,6 +62,42 @@ class Server {
                 res.status(500).json({message: "Server Error"})
             }
         })
+        
+        //method to add events to the database
+        this.app.post('/add', async (req, res) =>{
+            const {name, date, location, description} = req.body;
+
+            try{
+                await this.database.Events.create({name, date, location, description});
+                res.status(201).json({message: "Event created successfully"})
+            }catch{
+                console.error(err)
+                res.status(500).json({message: "Server Error"})
+            }
+        })
+
+        //method to get specified events from the database
+        this.app.get('/:date', async (req, res) =>{
+            const date = req.params.date;
+            try{
+                const events = await this.database.Events.findAll({where: {date}});
+                res.status(200).json(events);
+            }catch{
+                console.error(err)
+                res.status(500).json({message: "Server Error"})
+            }
+        })
+
+        //method to get all events from the database
+        this.app.get('/events', async (req, res) =>{
+            try{
+                const events = await this.database.Events.findAll();
+                res.status(200).json(events);
+            }catch{
+                console.error(err)
+                res.status(500).json({message: "Server Error"})
+            }
+        })
     }
 
     start() {
