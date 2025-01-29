@@ -64,24 +64,21 @@ class Server {
         })
         
         //method to add events to the database
-        this.app.post('/add', async (req, res) =>{
-            this.app.post('/add', async (req, res) => {
-                const { name, date, location, description } = req.body;
-            
-                if (!name || !date || !location) {
-                    return res.status(400).json({ message: "Name, date, and location are required" });
-                }
-            
-                try {
-                    await this.database.Events.create({ name, date, location, description });
-                    res.status(201).json({ message: "Event created successfully" });
-                } catch (err) {
-                    console.error(err);
-                    res.status(500).json({ message: "Server Error" });
-                }
-            });
-            
-        })
+        this.app.post('/add', async (req, res) => {
+            const { name, date, location, description } = req.body;
+        
+            if (!name || !date || !location) {
+                return res.status(400).json({ message: "Name, date, and location are required" });
+            }
+        
+            try {
+                await this.database.Events.create({ name, date, location, description });
+                res.status(201).json({ message: "Event created successfully" });
+            } catch (err) {
+                console.error(err);
+                res.status(500).json({ message: "Server Error" });
+            }
+        });
 
         //method to get specified events from the database
         this.app.get('/:date', async (req, res) =>{
