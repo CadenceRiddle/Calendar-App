@@ -10,14 +10,10 @@ const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // Handle form submission for both Login and Signup
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const endpoint = isLogin ? 'login' : 'signup';
-        const body = isLogin
-            ? { username, password }
-            : { username, password, age };
+        const body = isLogin ? { username, password } : { username, password, age };
 
         try {
             const response = await fetch(`http://localhost:3001/${endpoint}`, {
@@ -31,9 +27,9 @@ const Login = () => {
             if (response.ok) {
                 alert(data.message);
                 if (isLogin) {
-                    navigate('/home');  // Redirect to Home after login
+                    navigate('/home');
                 } else {
-                    setIsLogin(true);  // Switch to login after signup
+                    setIsLogin(true);
                 }
             } else {
                 setError(data.message);
@@ -50,7 +46,7 @@ const Login = () => {
             {error && <p className="error">{error}</p>}
 
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="input-field">
                     <label>Username:</label>
                     <input
                         type="text"
@@ -61,7 +57,7 @@ const Login = () => {
                     />
                 </div>
 
-                <div>
+                <div className="input-field">
                     <label>Password:</label>
                     <input
                         type="password"
@@ -72,9 +68,8 @@ const Login = () => {
                     />
                 </div>
 
-                {/* Age field only for Sign Up */}
                 {!isLogin && (
-                    <div>
+                    <div className="input-field">
                         <label>Age:</label>
                         <input
                             type="number"
