@@ -1,25 +1,59 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #353535;
+  color: white;
+  display: grid;
+  place-items: center; /* Centers everything */
+  height: 100vh; /* Full viewport height */
+  margin: 0;
+}
+
 .login-container {
-  width: 300px;
-  margin: 100px auto;
+  display: grid;
+  gap: 15px; /* Spacing between elements */
+  width: 320px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #000;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: #696969;
   text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  margin: 0;
+}
+
+form {
+  display: grid;
+  gap: 15px; /* Consistent spacing */
+  width: 100%; /* Ensures proper alignment */
+}
+
+.input-field {
+  display: grid;
+  gap: 5px;
+  text-align: center; /* Centers labels */
+}
+
+.input-field label {
+  font-weight: bold;
 }
 
 input, button {
-  width: 100%;
+  width: 90%; /* Ensures equal margins on left and right */
+  margin: 0 auto; /* Centers the input fields */
   padding: 10px;
-  margin-top: 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  display: block;
 }
 
 button {
   background-color: #007bff;
   color: white;
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
 }
 
 button:hover {
@@ -40,5 +74,13 @@ button:hover {
 
 .error {
   color: red;
-  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  .login-container {
+    width: 90%;
+    padding: 15px;
+  }
 }

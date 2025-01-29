@@ -1,11 +1,10 @@
 /* Highlight today's date */
 .highlight {
-  background-color: #007bff;
-  color: white;
-  border-radius: 50%;
+  background-color: #ff5733 !important; /* Change to a noticeable color */
+  color: white !important;
   font-weight: bold;
+  border: 2px solid #ffffff !important; /* Adding a border for better emphasis */
 }
-
 /* Highlight dates with events */
 .event-date {
   background-color: #ffd700;
