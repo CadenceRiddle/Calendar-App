@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import MyCalendar from './Calendar';
-import './Home.css'; // Optional for additional styling
+import './Home.css';
 
 const Home = () => {
+  const [refresh, setRefresh] = useState(false);
+
   return (
     <div className="home-container">
-      <Sidebar />
+      <Sidebar onAddEvent={() => setRefresh(!refresh)} />
       <div className="main-content">
         <h1>Welcome to the Home Page</h1>
-        <MyCalendar />
+        <MyCalendar key={refresh} />
       </div>
     </div>
   );
